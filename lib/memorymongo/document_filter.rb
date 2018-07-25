@@ -23,7 +23,16 @@ module MemoryMongo
 
     def simple_filter(filter)
       filter.all? do |key, val|
-        body[key] == val
+        if val.is_a?(Hash)
+          condition, values = val.first
+          if condition == '$in'
+            body[key].in?(values)
+          else
+            raise NotImplementedError, "Cannot apply filter #{filter.inspect}. Unknown filter condition: #{condition}"
+          end
+        else
+          body[key] == val
+        end
       end
     end
 

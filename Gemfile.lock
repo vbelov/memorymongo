@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    memorymongo (0.1.0)
+    memorymongo (0.1.1)
       awesome_print
       hashie
       mongoid
@@ -174,4 +174,4 @@ DEPENDENCIES
   spring-commands-rspec
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

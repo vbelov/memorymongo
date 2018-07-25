@@ -38,6 +38,11 @@ RSpec.describe MemoryMongo, type: :model do
     expect(TestModel.or({int_field: 1}, {int_field: 3}).count).to eq(1)
   end
 
+  it 'allows to use IN within filter' do
+    objects = 3.times.map { |i| TestModel.create!(int_field: i) }.sample(2)
+    expect(TestModel.where(:id.in => objects.map(&:id)).all).to match_array(objects)
+  end
+
   it 'returns documents matching filter' do
     TestModel.create!(int_field: 1)
     TestModel.create!(int_field: 2)
