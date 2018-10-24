@@ -43,6 +43,11 @@ RSpec.describe MemoryMongo, type: :model do
     expect(TestModel.where(:id.in => objects.map(&:id)).all).to match_array(objects)
   end
 
+  it 'allows to use NE within filter' do
+    objects = 3.times.map { |i| TestModel.create!(int_field: i) }
+    expect(TestModel.where(:id.ne => objects.first.id).all).to match_array(objects[1..-1])
+  end
+
   it 'allows to set LIMIT and SKIP' do
     objects = 10.times.map { |i| TestModel.create!(int_field: i) }
     subset = TestModel.all.skip(4).limit(3).to_a

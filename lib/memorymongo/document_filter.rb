@@ -27,6 +27,8 @@ module MemoryMongo
           condition, values = val.first
           if condition == '$in'
             body[key].in?(values)
+          elsif condition == '$ne'
+            body[key] != values
           else
             raise NotImplementedError, "Cannot apply filter #{filter.inspect}. Unknown filter condition: #{condition}"
           end
