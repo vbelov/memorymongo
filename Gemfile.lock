@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    memorymongo (0.1.4)
+    memorymongo (0.1.5)
       awesome_print
       hashie
       mongoid
