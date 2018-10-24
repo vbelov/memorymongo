@@ -29,6 +29,8 @@ module MemoryMongo
             body[key].in?(values)
           elsif condition == '$ne'
             body[key] != values
+          elsif condition == '$gt'
+            body[key] > values
           else
             raise NotImplementedError, "Cannot apply filter #{filter.inspect}. Unknown filter condition: #{condition}"
           end
